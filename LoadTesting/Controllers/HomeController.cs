@@ -18,9 +18,23 @@ namespace LoadTesting.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Route("404")]
+        public IActionResult PageNotFound()
         {
-            return View();
+            return NotFound();
+        }
+
+        [Route("500")]
+        public IActionResult StatusInternalServerError()
+        {
+            return StatusCode(500);
+        }
+
+        [Route("SlowPage")]
+        public IActionResult SlowPage()
+        {
+            Thread.Sleep(5000);
+            return Content("Slow Page!");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
